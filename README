@@ -1,0 +1,98 @@
+NAME
+    Test::Stream::Plugin::SpecDeclare - Syntax sugar for
+    Test::Stream::Plugin::Spec.
+
+DESCRIPTION
+    This plugin provides keywords for all the functions exported by
+    Test::Stream::Plugin::Spec. These keywords give the functions better
+    syntax so that they work more like the "sub" keyword.
+
+SYNOPSIS
+        use Test::Stream qw/-V1 Spec SpecDeclare/;
+
+        # Using syntax sugar
+        tests sweet {
+            ok(1, "pass");
+        }
+
+        # No sugar
+        tests bland => sub {
+            ok(1, "pass");
+        };
+
+
+        # Using syntax sugar
+        tests sweeter(todo => 'fixme') {
+            ok(0, "fail");
+        }
+
+        # No sugar
+        tests blander => {todo => 'fixme'}, sub {
+            ok(0, "fail");
+        };
+
+
+        # Using syntax sugar
+        tests 'sweetest yet'(skip => 'broken') {
+            die "broken";
+        }
+
+        # No sugar
+        tests 'blandest yet' => {skip => 'broken'}, sub {
+            die "broken";
+        };
+
+    Syntax like the 'sub' keyword
+            tests NAME { ... }
+
+    Supports meta-attributes
+            tests NAME(...) { ... }
+
+    Can use quotes for a complex name
+            tests "complex name" { ... }
+            tests 'complex name' { ... }
+
+    Final semicolon is added for you
+        No need to add it yourself, just like the 'sub' keyword.
+
+    Does not break the old syntax
+        These all still work:
+
+            tests foo => sub { ... };
+            tests foo => {...}, sub { ... };
+            tests "foo", {...}, sub { ... };
+            tests 'foo', {...}, sub { ... };
+
+KEYWORDS
+    The following keywords are supported, the magic will only be added for
+    the functions if they have been imported into your package.
+
+    describe
+    cases
+    tests
+    it
+    case
+    before_all
+    after_all
+    around_all
+    before_case
+    after_case
+    around_case
+    before_each
+    after_each
+    around_each
+
+MAINTAINERS
+    Chad Granum <exodist@cpan.org>
+
+AUTHORS
+    Chad Granum <exodist@cpan.org>
+
+COPYRIGHT
+    Copyright 2015 Chad Granum <exodist7@gmail.com>.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
+    See http://www.perl.com/perl/misc/Artistic.html
+
