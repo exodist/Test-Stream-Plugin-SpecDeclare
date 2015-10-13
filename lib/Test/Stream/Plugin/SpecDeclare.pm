@@ -57,7 +57,7 @@ my \$h = {$meta};
 # Now we can define some variables.
 my $ID = 1;
 our $DEBUG   = 0;
-our $VERSION = "0.000002";
+our $VERSION = "0.000003";
 
 sub load_ts_plugin {
     my $class = shift;
