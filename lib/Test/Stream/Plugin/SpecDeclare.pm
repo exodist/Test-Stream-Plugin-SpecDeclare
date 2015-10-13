@@ -82,7 +82,7 @@ sub _inject_scope {
     on_scope_end {
         my $line = Devel::Declare::get_linestr();
         my $offset = Devel::Declare::get_linestr_offset();
-        substr($line, $offset, 0) = ';';
+        substr($line, $offset, 0) = ', __LINE__;';
         Devel::Declare::set_linestr($line);
         print STDERR "FINAL: |$line|\n" if $DEBUG;
     }
@@ -118,7 +118,7 @@ sub parser {
     # After the name we use a fat comma, then get the meta hash by id, then add
     # an opening paren, which strangely works around some parser issues, we
     # will close it later
-    my $post_name = " => Test::Stream::Plugin::SpecDeclare::_metahash($id), (";
+    my $post_name = " => __LINE__, Test::Stream::Plugin::SpecDeclare::_metahash($id), (";
 
     # Get the block name
     my $start = substr($line, $offset, 1);

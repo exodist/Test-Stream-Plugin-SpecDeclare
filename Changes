@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+    - Inject line numbers
+
 0.000002  2015-10-06 18:05:48-07:00 America/Los_Angeles
 
     - Jump through hoops to support perls 5.8.1->5.20+
